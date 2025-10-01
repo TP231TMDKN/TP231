@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Définition de la structure d’un maillon
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
+
+// Fonction pour insérer un élément en tête
+Node* insererDebut(Node *head, int valeur) {
+    Node *nouveau = (Node*)malloc(sizeof(Node));
+    if (!nouveau) {
+        printf("Erreur d’allocation mémoire\n");
+        exit(1);
+    }
+    nouveau->data = valeur;
+    nouveau->next = head;
+    return nouveau;
+}
+
+// Fonction pour afficher la liste
+void afficherListe(Node *head) {
+    Node *temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Fonction pour supprimer toutes les occurrences d’un élément donné
+Node* supprimerOccurences(Node *head, int valeur) {
+    Node *temp = head;
+    Node *prev = NULL;
+
+    while (temp != NULL) {
+        if (temp->data == valeur) {
+            // Cas où c’est la tête
+            if (prev == NULL) {
+                head = temp->next;
+                free(temp);
+                temp = head;
+            } else {
+                prev->next = temp->next;
+                free(temp);
+                temp = prev->next;
+            }
+        } else {
+            prev = temp;
+            temp = temp->next;
+        }
+    }
+    return head;
+}
