@@ -1,34 +1,20 @@
+Ce projet est un programme en C qui permet de manipuler plusieurs types de listes chaînées.
+Un menu est affiché pour choisir le type de liste et effectuer quelques opérations (insertion, suppression, affichage).
 
+⸻
 
-- main.c      : contient le code source complet en C.
-- README.txt  : ce fichier explicatif.
+Types de listes gérés
+	•	Liste simplement chaînée triée
+	•	Liste doublement chaînée triée
+	•	Liste simplement chaînée circulaire
+	•	Liste doublement chaînée circulaire
 
+⸻
 
-  *Compilation
-ouvrir un terminal dans le dossier contenant main.c puis exécuter :
-
-    gcc main.c -o prog
-
-Cela crée un exécutable nommé `prog`.
-
-  *Exécution
-
-Lancer le programme avec :
-
-    ./prog
-
-Le programme demandera :
-- Combien d’éléments insérer dans la liste.
-- Les valeurs des éléments un par un.
-- Puis la valeur à supprimer (toutes ses occurrences).
-
-
-
-   *Remarques
-
-- La fonction `insererDebut` ajoute les éléments en tête de liste.
-     Donc l’ordre d’insertion est inversé à l’affichage.
-- La fonction `supprimerOccurences` parcourt la liste et supprime
-  toutes les cellules contenant la valeur recherchée.
-- Une amélioration possible serait d’ajouter une fonction
-  `freeListe` pour libérer toute la mémoire à la fin du programme.
+Organisation du code
+	•	main.c : contient le menu principal
+	•	del_occurence_liste.c : suppression d’éléments
+	•	liste_simplement_chaine_trie.c : liste simplement chaînée triée
+	•	liste_doublement_chaine_trie.c : liste doublement chaînée triée
+	•	liste_simplement_chainee_circulaire.c : liste simplement chaînée circulaire
+	•	Liste_doublement_chaine_circulaire.c : liste doublement chaînée circulaire
