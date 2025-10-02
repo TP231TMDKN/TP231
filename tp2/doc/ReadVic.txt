@@ -1,0 +1,80 @@
+FONCTION DE SUPPRESSION DES OCCURRENCES
+
+La fonction qui supprime les occurrences dans une liste chaînée a pour objectif de retirer tous les nœuds contenant une valeur spécifique de la liste.
+
+FONCTIONNEMENT:
+
+1. PARAMÈTRES:
+   - Liste en entrée (head) : pointeur vers le premier nœud
+   - Valeur à supprimer (value) : la donnée à rechercher et éliminer
+
+2. ALGORITHME DE BASE:
+   - Parcours séquentiel de toute la liste
+   - Comparaison de chaque élément avec la valeur cible
+   - Suppression des nœuds correspondants
+   - Maintien de l'intégrité des liens
+
+3. CAS PARTICULIERS À GÉRER:
+
+   a) Suppression en tête:
+      - Si le premier nœud contient la valeur
+      - La tête doit être mise à jour
+      - Libération mémoire de l'ancienne tête
+
+   b) Suppression au milieu:
+      - Mise à jour du lien 'next' du nœud précédent
+      - Saut du nœud à supprimer
+      - Libération mémoire du nœud supprimé
+
+   c) Suppression en queue:
+      - Le dernier nœud pointe vers NULL
+      - Le nœud précédent devient la nouvelle fin
+
+4. PSEUDO-CODE pour liste simplement chaînée:
+
+   current = head
+   previous = NULL
+   
+   while current != NULL:
+       if current->data == value:
+           if previous == NULL:  // Suppression en tête
+               head = current->next
+               free(current)
+               current = head
+           else:  // Suppression au milieu ou queue
+               previous->next = current->next
+               free(current)
+               current = previous->next
+       else:
+           previous = current
+           current = current->next
+
+5. VARIANTES POUR DIFFÉRENTS TYPES DE LISTES:
+
+   a) Liste doublement chaînée:
+      - Mise à jour des pointeurs 'prev' et 'next'
+      - Si current->next existe: current->next->prev = previous
+
+   b) Liste circulaire:
+      - Gestion spéciale de la circularité
+      - Dernier nœud doit pointer vers la nouvelle tête
+      - Vérification des conditions de boucle
+
+   c) Liste triée:
+      - Pas besoin de parcours complet après suppression
+      - Arrêt si current->data > value (pour ordre croissant)
+
+6. COMPLEXITÉ:
+   - Temps: O(n) - parcours linéaire de la liste
+   - Espace: O(1) - utilisation mémoire constante
+
+7. GESTION DE LA MÉMOIRE:
+   - Libération explicite avec free()
+   - Éviter les dangling pointers
+   - Pas de fuites mémoire
+
+8. EXEMPLE D'UTILISATION:
+
+   Liste: 5 → 3 → 5 → 7 → 5 → NULL
+   Supprimer toutes les occurrences de 5
+   Résultat: 3 → 7 → NULL
