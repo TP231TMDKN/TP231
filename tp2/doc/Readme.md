@@ -1,4 +1,4 @@
-     //Gestion d’une Liste Simplement Chaînée triee en C
+//Gestion d’une Liste Simplement Chaînée triee en C
 
 *Description
 
