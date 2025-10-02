@@ -145,56 +145,55 @@ void free_list(list* li)
 }
 //-------------FIN DES FONCTIONS--------------
 
-int main()
-{
-    list liste;
-    initlist(&liste);
+// void menuTache5()
+// {
+//     list liste;
+//     initlist(&liste);
 
-    int choice, data;
+//     int choice, data;
 
-    printf("====== Gestion d'une liste Doublement chainée Circulaire ======");
+//     printf("====== Gestion d'une liste Doublement chainée Circulaire ======");
 
-    do
-    {
-        printf("\nMenu 👨‍💼:\n");
-        printf("1. Insérer en tête 👈\n");
-        printf("2. Insérer en queue 👈\n");
-        printf("3. Afficher votre liste dans l'ordre 👈\n");
-        printf("4. Afficher votre liste dans l'ordre inverse 👈\n");
-        printf("5. Taille de la liste 👈\n");
-        printf("6. Quitter 👈\n");
-        printf("Choix: ");
-        scanf("%d", &choice);
+//     do
+//     {
+//         printf("\nMenu 👨‍💼:\n");
+//         printf("1. Insérer en tête 👈\n");
+//         printf("2. Insérer en queue 👈\n");
+//         printf("3. Afficher votre liste dans l'ordre 👈\n");
+//         printf("4. Afficher votre liste dans l'ordre inverse 👈\n");
+//         printf("5. Taille de la liste 👈\n");
+//         printf("6. Quitter 👈\n");
+//         printf("Choix: ");
+//         scanf("%d", &choice);
 
-        switch (choice)
-        {
-            case 1:
-                printf("Entrer la valeur a inserer a l'en-tête 👉 ");
-                scanf("%d", &data);
-                insert_head(&liste, data);
-                break;
-            case 2:
-                printf("Entrer la valeur a inserer en queue 👉 ");
-                scanf("%d", &data);
-                insert_tail(&liste, data);
-                break;
-            case 3:
-                display_list(&liste);
-                break;
-            case 4:
-                display_Backside_list(&liste);
-                break;
-            case 5:
-                printf("Taille de la liste : %d\n", liste.size);
-                break;
-            case 6:
-                printf("Au revoir!🖐️\n");
-                break;
-                break;
-            default:
-                printf("Choix invalide!❌\n");
-        }
-    } while (choice != 6);
+//         switch (choice)
+//         {
+//             case 1:
+//                 printf("Entrer la valeur a inserer a l'en-tête 👉 ");
+//                 scanf("%d", &data);
+//                 insert_head(&liste, data);
+//                 break;
+//             case 2:
+//                 printf("Entrer la valeur a inserer en queue 👉 ");
+//                 scanf("%d", &data);
+//                 insert_tail(&liste, data);
+//                 break;
+//             case 3:
+//                 display_list(&liste);
+//                 break;
+//             case 4:
+//                 display_Backside_list(&liste);
+//                 break;
+//             case 5:
+//                 printf("Taille de la liste : %d\n", liste.size);
+//                 break;
+//             case 6:
+//                 printf("Au revoir!🖐️\n");
+//                 break;
+//                 break;
+//             default:
+//                 printf("Choix invalide!❌\n");
+//         }
+//     } while (choice != 6);
     
-    return 0;
-}
+// }
