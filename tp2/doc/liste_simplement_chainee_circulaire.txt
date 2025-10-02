@@ -1,61 +1,61 @@
-# Liste Doublement Chainee Circulaire
+# Liste Simplement Chainee Trie
 
 ## Description
-Ce programme implemente une liste doublement chainee circulaire en langage C. Une liste doublement chainee circulaire est une structure de donnees ou chaque noeud possede deux pointeurs (front et back) et ou le dernier element pointe vers le premier, formant ainsi une boucle.
+Ce programme implemente une liste simplement chainee triee en langage C. Les elements sont inseres dans la liste de maniere a maintenir un ordre croissant a tout moment.
 
 ## Structure de donnees
 
-### Noeud (node)
+### Noeud (Node)
 Chaque noeud contient:
-- data: la valeur stockee dans le noeud
-- front: pointeur vers le noeud precedent
-- back: pointeur vers le noeud suivant
-
-### Liste (list)
-La liste contient:
-- size: le nombre d'elements dans la liste
-- head: pointeur vers le premier element de la liste
+- data: la valeur entiere stockee dans le noeud
+- next: pointeur vers le noeud suivant
 
 ## Fonctionnalites
 
 ### Fonctions principales
 
-1. Initialisation: initlist() - Initialise une liste vide
-2. Creation de noeud: create_node() - Cree un nouveau noeud avec allocation memoire
-3. Insertion en tete: insert_head() - Ajoute un element au debut de la liste
-4. Insertion en queue: insert_tail() - Ajoute un element a la fin de la liste
-5. Affichage: display_list() - Affiche la liste dans l'ordre normal
-6. Affichage inverse: display_Backside_list() - Affiche la liste dans l'ordre inverse
-7. Liberation memoire: free_list() - Libere toute la memoire allouee pour la liste
+1. **Creation de noeud**: createNode() - Cree un nouveau noeud avec allocation memoire
+2. **Insertion triee**: inserer_tri() - Insere un element dans la liste en maintenant l'ordre croissant
+3. **Affichage**: afficher_liste() - Affiche la liste du debut a la fin
+4. **Menu interactif**: menu_main() - Interface utilisateur pour gerer la liste
 
 ### Menu interactif
 Le programme offre un menu avec les options suivantes:
-1. Inserer en tete
-2. Inserer en queue
-3. Afficher la liste dans l'ordre
-4. Afficher la liste dans l'ordre inverse
-5. Afficher la taille de la liste
-6. Quitter le programme
+1. Inserer dans la liste simple triee
+2. Afficher la liste simple
+0. Quitter le programme
 
 ## Compilation et execution
 
 Pour compiler le programme:
-gcc Liste_doublement_chaine_circulaire.c -o liste_circulaire
+gcc liste_simplement_chaine_trie.c -o liste_triee
 
 Pour executer:
-./liste_circulaire
+./liste_triee
 
 ## Caracteristiques techniques
 
-- Gestion automatique de la memoire avec malloc/free
-- Detection des erreurs d'allocation memoire
-- Liste circulaire: le dernier element pointe vers le premier
-- Double chainage: chaque noeud a des pointeurs vers son precedent et suivant
-- Compteur de taille integre pour un acces rapide au nombre d'elements
+- Insertion automatique en position triee
+- Gestion memoire avec malloc
+- Affichage clair avec fleches indiquant le chainage
+- Liste se termine par NULL
+
+## Algorithme d'insertion
+
+L'insertion triee fonctionne ainsi:
+- Si la liste est vide ou la valeur est plus petite que la tete, insertion en tete
+- Sinon, parcourt la liste jusqu'a trouver la position appropriee
+- Insere le nouveau noeud a la position trouvee
+
+## Complexite
+
+- Insertion: O(n) dans le pire cas
+- Affichage: O(n)
+- Memoire: O(n) pour n elements
 
 ## Notes d'utilisation
 
-- La liste est initialement vide
-- Les insertions en tete et queue sont efficaces (O(1))
-- L'affichage se fait sans modification de la liste
-- La liberation memoire est essentielle pour eviter les fuites de memoire
+- La liste reste toujours triee
+- Les doublons sont autorises
+- L'ordre est croissant
+- La liberation memoire n'est pas implementee dans ce code
