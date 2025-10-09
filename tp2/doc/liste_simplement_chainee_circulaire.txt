@@ -47,12 +47,6 @@ L'insertion triee fonctionne ainsi:
 - Sinon, parcourt la liste jusqu'a trouver la position appropriee
 - Insere le nouveau noeud a la position trouvee
 
-## Complexite
-
-- Insertion: O(n) dans le pire cas
-- Affichage: O(n)
-- Memoire: O(n) pour n elements
-
 ## Notes d'utilisation
 
 - La liste reste toujours triee

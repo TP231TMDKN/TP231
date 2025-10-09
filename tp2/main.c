@@ -31,7 +31,7 @@ int main() {
 
         switch(choix) {
             case 1:
-                appel();
+                menuTache5();
                 break;
             case 2:
                 menuTache2();
