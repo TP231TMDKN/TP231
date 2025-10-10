@@ -6,7 +6,7 @@
 #include "./Djoumo.c"
 #include "./Vicky.c"
 #include "./merveille.c"
-#include "./Kabot.c"
+#include "./Kabod.c"
 #include "./Miranda.c"
 
 #define max_arg 10
