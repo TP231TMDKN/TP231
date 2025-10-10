@@ -1,0 +1,182 @@
+=====================================================================================
+UNE APPLICCATION DE TRAITEMENT D'IMAGES EN FORMAT PPM (P3) DEVELOPPEE EN C .
+=====================================================================================
+
+## ______Fonctionnalités_______
+
+- Affichage des dimensions : Commande `size`
+- Conversion en niveaux de gris : Commande `gris`
+- Création de négatif : Commande `neg`
+- Découpe d'image : Commande `cut`
+- Application de filtre médian : Commande `fil`
+- Modification de couleur dominante : Commande `dom`
+- Interface interactive : Shell commande personnalisé
+
+## _____Utilisation______
+
+### Compilation :
+bash : gcc -o ppmviewer main.c 
+
+## ______Realisateurs______
+
+==========================================================================================
+                     ~TAFEN TCHOUTA VICTOIRE GRACE~
+==========================================================================================
+1. Fonction : int verifie_value(int value, int min, int max)
+------------------------------------------------------------
+Rôle :
+    Cette fonction vérifie qu'une valeur entière reste comprise entre deux bornes (min et max).
+    Elle est utilisée pour éviter que les composantes de couleur (R, G, B) dépassent les valeurs autorisées.
+Retour :
+    - Retourne la valeur corrigée si elle sort de l'intervalle.
+      Si value < min, retourne min ; si value > max, retourne max ; sinon retourne value.
+
+2. Fonction : void put_dominant_color(Image_PPM *image, char dominant_color, int value)
+----------------------------------------------------------------------------------------
+Rôle :
+    Modifie l’intensité des pixels ayant une couleur dominante spécifique (R, G ou B)
+    dans une image PPM. Elle permet de foncer ou d’éclaircir une zone de couleur dominante.
+
+Paramètres :
+    - image : pointeur vers une structure de type Image_PPM contenant les pixels et leurs couleurs.
+    - dominant_color : caractère ('R', 'G' ou 'B') indiquant la couleur dominante ciblée.
+    - value : valeur entière à ajouter (positive pour éclaircir, négative pour foncer).
+
+Explication :
+    Pour chaque pixel de l’image, la fonction compare les trois composantes de couleur (r, g, b).
+    Si la composante dominante correspond à celle indiquée (ex. 'R' pour rouge dominant),
+    la fonction ajuste les trois composantes du pixel (r, g, b) en ajoutant la valeur donnée.
+    La fonction 'verifie_value' est appelée pour éviter tout dépassement au-delà des limites
+    [0, image->max_value_color].
+=======================================================================================
+                     ~RIKAM JEAN CABOT~
+=======================================================================================
+– Fonction apply_median_filter()
+ Objectif de la fonction
+
+La fonction apply_median_filter(Image_PPM *image) applique un filtre médian sur une image en couleur (format PPM).
+Ce filtre est utilisé pour réduire le bruit (comme les petits points parasites) tout en gardant les détails de l'image.
+
+Le filtre médian remplace la couleur d’un pixel par la médiane des couleurs de ses voisins immédiats dans un carré de 3x3 pixels.
+Pour chaque pixel, on regarde ses 8 voisins + lui-même.
+On trie les valeurs rouges (R), vertes (G) et bleues (B) séparément.
+On prend la valeur du milieu (la 5e) comme nouvelle couleur.
+
+======================================================================================
+                     23V2156~DJOUMO KOUAM DORINAL
+======================================================================================
+Rapport de Code - Fonction de Negation d'Image
+
+Je vais expliquer le fonctionnement de cette fonction qui cree un negatif d'une image.
+
+Ce que je fais :
+Je prends une image en couleurs et j'inverse toutes ses couleurs pour creer un effet negatif, comme une pellicule photo ancienne.
+
+Comment je travaille :
+- Je parcours chaque pixel de l'image ligne par ligne
+- Pour chaque pixel, je modifie ses trois composantes de couleur (rouge, vert, bleu)
+- J'utilise la valeur maximale de couleur de l'image pour faire l'inversion
+
+L'operation principale :
+Pour chaque composante de couleur d'un pixel, je calcule :
+nouvelle_couleur = valeur_maximale - ancienne_couleur
+
+Exemple simple :
+Si la valeur maximale est 255 et qu'un pixel a :
+- Rouge : 200 devient 55 (255-200)
+- Vert : 100 devient 155 (255-100)
+- Bleu : 50 devient 205 (255-50)
+
+Structure de l'image :
+L'image est representee par une structure qui contient :
+- height : la hauteur en pixels
+- width : la largeur en pixels
+- max_value_color : la valeur maximale des couleurs (souvent 255)
+- pixel : un tableau 2D qui stocke les couleurs RGB de chaque pixel
+
+=======================================================================================
+                    ~NANBOU ZETANG MBANGA DIMITRI~
+=======================================================================================
+Realisateur des fichiers main.h et main.c.
+C'est ce bout de code qui permet d'avoir un interpreteur personnel et toujours actif :  
+while (1)
+    {
+        char command[max_command];
+        printf("ppmviewer > ");
+
+        if (fgets(command, max_command, stdin) == NULL)
+        {
+            break;
+        }
+
+        take_command(command);
+    }
+---Fonctions cree : 
+      [take_command(char *command)] : Fonction qui recupere la commande saisie par l'utilisateur et la separe sur l'espace en different arguments grace a la fonction strtok(command," \n"); ce qui nous permet par la suite de comparer args[0] qui est le premier argument avec les differents mots de commandes et appliquer d'autres fonctions a la suite.  
+      
+      [take_infos(char *name);] : Lire les informations d'une image sauvegardé et recupere les données de celui-ci. 
+      
+      [get_size(Image_PPM *img);] : Affiche tout simplement la taille de l'image. CODE : 
+void get_size(Image_PPM *img)
+{
+    printf("%d x %d\n", img->width, img->height);
+}
+       [ignore_comment(FILE *file);] : Fonction permettant d'ignorer les commentaires s'il y'en a dans une image PPM. A la fin du commentaire le charactere suivant est celui-là par lequel on commence a lire les informations de l'image grace a la fonction ungetc();
+        
+       [save_image(char *filename, Image_PPM *img);] : permettant de sauvegarder l'image obtenue par application des commandes dans une nouvelle image. 
+====================================================================================
+                     ~GALYEU DE HONBA MIRANDA BRUNILDE~
+====================================================================================
+
+## Description
+La fonction `cut_image()` permet de découper une région rectangulaire spécifique d'une image PPM.
+
+## Fonctionnalité Principale : 
+
+### `Image_PPM *cut_image(Image_PPM *image, int l1, int l2, int c1, int c2);`
+
+Découpe une sous-région rectangulaire d'une image PPM selon les coordonnées spécifiées.
+
+## Paramètres d'Entrée : 
+
+| Paramètre | Type       | Description                             |
+|-----------|------------|-----------------------------------------|
+| image     | Image_PPM* | Pointeur vers l'image source à découper |
+| l1        | int        | Ligne de début (coordonnée Y supérieure)|
+| l2        | int        | Ligne de fin (coordonnée Y inférieure)  |
+| c1        | int        | Colonne de début (coordonnée X gauche)  |
+| c2        | int        | Colonne de fin (coordonnée X droite)    |
+
+## Validation des Paramètres
+
+La fonction vérifie que :
+- l1 et c1 sont ≥ 0
+- l2 et c2 sont ≤ aux dimensions de l'image originale
+- l1 < l2 et c1 < c2 (région valide)
+====================================================================================
+                     ~MOUSSOUA NDONG ODETTE MERVEILLE~
+====================================================================================
+
+## Description
+La fonction grayscale() convertit une image couleur PPM en une image en niveaux de gris en calculant la moyenne des composantes RGB.
+
+## Fonctionnalité Principale :
+
+### void grayscale(Image_PPM *image)
+
+Convertit une image couleur en niveaux de gris en modifiant directement la structure image passée en paramètre.
+
+## Paramètres d'Entrée
+
+| Paramètre | Type       | Description |
+|-----------|------------|-------------|
+| image     | Image_PPM* | Pointeur vers l'image à convertir (modifiée en place) |
+
+### Méthode de la Moyenne Arithmétique
+
+int moyenne = (p->r + p->g + p->b) / 3;
+p->r = p->g = p->b = moyenne;
+
+====================================================================================
+                                    FIN DU README
+====================================================================================
